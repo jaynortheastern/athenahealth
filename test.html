@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<a href="#" id="get-data">Get JSON data</a>
+    <div id="show-data"></div>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
+
+<script type="text/javascript">
+   $(document).ready(function () {
+    var showData = $('#show-data');
+
+    $.getJSON('data.json', function (data) {
+      console.log(data);
+
+      var items = data.items.map(function (item) {
+        return item.key + ': ' + item.value;
+      });
+
+      showData.empty();
+
+      if (items.length) {
+         console.log(items.length);
+        var content = '<li class="test">' + items.join('</li><li>') + '</li>';
+        var list = $('<ul />').html(content);
+        showData.append(list);
+      }
+    });
+
+});
+
+</script>
+
+</body>
+</html>
